@@ -17,16 +17,32 @@
 # under the License.
 #
 
-project.name: "decawave-uwb-dw1000"
+repo.name: decawave-uwb-dw1000
+repo.versions:
+    "0.0.0": "master"
+    "0.9.0": "uwb_dw1000_0_9_0_tag"
+    "0.9.1": "uwb_dw1000_0_9_1_tag"
 
-project.repositories:
-  - apache-mynewt-core
+    "0-latest": "0.9.1"
+    "0-dev": "0.0.0"       # master
 
-# Use github's distribution mechanism for core ASF libraries.
-# This provides mirroring automatically for us.
-#
-repository.apache-mynewt-core:
-    type: github
-    vers: 0-dev
-    user: apache
-    repo: mynewt-core
+repo.newt_compatibility:
+    # Allow all versions for 0.0.0.  This is a workaround to prevent a warning
+    # from being displayed when newt doesn't know which version of the repo is
+    # present.
+    0.0.0:
+        0.0.0: good
+    0.9.0:
+        1.7.0: good
+    0.9.1:
+        1.7.0: good
+
+repo.deps:
+    apache-mynewt-core:
+        type: github
+        user: apache
+        repo: mynewt-core
+        vers:
+            master: 1.7.0
+            uwb_dw1000_0_9_0_tag: 1.7.0
+            uwb_dw1000_0_9_1_tag: 1.7.0
